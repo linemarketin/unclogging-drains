@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head>
+<html lang="ar" dir="rtl">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Google Site Verification (placeholder) -->
-    <meta name="google-site-verification" content="your-verification-code">
+    <meta name="google-site-verification" content="your-verification-code" />
 
     <!-- Google tag (gtag.js) - NEW TRACKING CODE (AW-18323362164) -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18323362164"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18323362164"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -49,6 +50,22 @@
     }
     </script>
 
+    <!-- Event snippet for نقرة صادرة إلى الخارج conversion page -->
+    <script>
+    function gtag_report_conversion_outbound(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18323362164/E6NkCIf1wtAcEPSioaFE',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
     <!-- Call and WhatsApp tracking functions (updated number) -->
     <script>
     function makePhoneCall(phoneNumber) {
@@ -62,12 +79,15 @@
       }
       var telUrl = 'tel:' + cleanNumber;
 
-      // Track both conversion events
+      // Track all three conversion events
       if (typeof gtag_report_conversion_call === 'function') {
         gtag_report_conversion_call(telUrl);
       }
       if (typeof gtag_report_conversion_contact === 'function') {
         gtag_report_conversion_contact(telUrl);
+      }
+      if (typeof gtag_report_conversion_outbound === 'function') {
+        gtag_report_conversion_outbound(telUrl);
       }
 
       setTimeout(function() {
@@ -78,12 +98,15 @@
     }
 
     function trackWhatsAppClick(url) {
-      // Track both conversion events
+      // Track all three conversion events
       if (typeof gtag_report_conversion_call === 'function') {
         gtag_report_conversion_call(url);
       }
       if (typeof gtag_report_conversion_contact === 'function') {
         gtag_report_conversion_contact(url);
+      }
+      if (typeof gtag_report_conversion_outbound === 'function') {
+        gtag_report_conversion_outbound(url);
       }
       setTimeout(function() {
         window.open(url, '_blank');
@@ -117,8 +140,8 @@
 
     <!-- Fonts & Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -1007,7 +1030,7 @@
         <div class="features">
             <div class="feature-item"><i class="fas fa-trophy feature-icon"></i><h3>خبرة وكفاءة</h3><p>سنوات من الخبرة في تسليك المجاري</p></div>
             <div class="feature-item"><i class="fas fa-clock feature-icon"></i><h3>خدمة 24 ساعة</h3><p>فريق جاهز للاستجابة الفورية</p></div>
-            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><h3>جودة ممتازة</h3><p>أعمال التسليك</p></div>
+            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><h3>ضمان الجودة</h3><p>ضمان على جميع أعمال التسليك</p></div>
             <div class="feature-item"><i class="fas fa-map-marked-alt feature-icon"></i><h3>تغطية الكويت</h3><p>جميع المناطق – السالمية، حولي، الفروانية، الجهراء، الأحمدي، العاصمة</p></div>
         </div>
     </section>
@@ -1049,9 +1072,9 @@
         <h2 class="section-title">اطلب خدمة تسليك مجاري فورية – 55980667</h2>
         <div class="form-container">
             <form id="contactForm">
-                <div class="form-group"><label for="name">الاسم الكامل</label><input type="text" id="name" placeholder="أدخل اسمك" required=""></div>
-                <div class="form-group"><label for="phone">رقم الهاتف</label><input type="tel" id="phone" placeholder="مثال: 51234567" required=""></div>
-                <div class="form-group"><label for="area">المنطقة (السالمية، حولي، الفروانية، الجهراء، الأحمدي، العاصمة)</label><input type="text" id="area" placeholder="حدد منطقتك" required=""></div>
+                <div class="form-group"><label for="name">الاسم الكامل</label><input type="text" id="name" placeholder="أدخل اسمك" required></div>
+                <div class="form-group"><label for="phone">رقم الهاتف</label><input type="tel" id="phone" placeholder="مثال: 51234567" required></div>
+                <div class="form-group"><label for="area">المنطقة (السالمية، حولي، الفروانية، الجهراء، الأحمدي، العاصمة)</label><input type="text" id="area" placeholder="حدد منطقتك" required></div>
                 <div class="form-group"><label for="service">نوع الخدمة المطلوبة</label>
                     <select id="service">
                         <option>تسليك مجاري – ماكينة اسبرينج</option>
@@ -1101,23 +1124,26 @@
     <div class="simple-footer">
         <p>🔧 أكواتك – تسليك مجاري – ماكينة اسبرينج – ضغط مياه – سحب سرداب – تصوير بايبات – تسليك مجاري الكويت</p>
         <div class="footer-phone" onclick="makePhoneCall('55980667')"><i class="fas fa-phone"></i> 55980667</div>
-        <p>فني معتمد – جودة – أسعار مناسبة – تغطية جميع مناطق الكويت</p>
+        <p>فني معتمد – ضمان الجودة – أسعار مناسبة – تغطية جميع مناطق الكويت</p>
         <p>جميع الحقوق محفوظة © 2026 | شركة أكواتك لتسليك المجاري – أفضل شركة في الكويت – رقم 55980667</p>
     </div>
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Track both conversion events on form submit
+            // Track all three conversion events on form submit
             if (typeof gtag_report_conversion_call === 'function') {
                 gtag_report_conversion_call();
             }
             if (typeof gtag_report_conversion_contact === 'function') {
                 gtag_report_conversion_contact();
             }
+            if (typeof gtag_report_conversion_outbound === 'function') {
+                gtag_report_conversion_outbound();
+            }
             alert('شكراً لتواصلكم مع شركة أكواتك لتسليك المجاري! سيتم الاتصال بكم فوراً لتقديم الخدمة.');
             this.reset();
         });
     </script>
-
-</body></html>
+</body>
+</html>
