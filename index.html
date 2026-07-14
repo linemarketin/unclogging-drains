@@ -18,7 +18,7 @@
 
     <!-- Event snippet for انقر للاتصال conversion page -->
     <script>
-    function gtag_report_conversion(url) {
+    function gtag_report_conversion_call(url) {
       var callback = function () {
         if (typeof(url) != 'undefined') {
           window.location = url;
@@ -28,6 +28,22 @@
           'send_to': 'AW-18323362164/ZFxHCOX8w9AcEPSioaFE',
           'value': 1.0,
           'currency': 'USD',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
+    <!-- Event snippet for جهة اتصال conversion page -->
+    <script>
+    function gtag_report_conversion_contact(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18323362164/hin9CNefwdAcEPSioaFE',
           'event_callback': callback
       });
       return false;
@@ -47,8 +63,12 @@
       }
       var telUrl = 'tel:' + cleanNumber;
 
-      if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion(telUrl);
+      // Track both conversion events
+      if (typeof gtag_report_conversion_call === 'function') {
+        gtag_report_conversion_call(telUrl);
+      }
+      if (typeof gtag_report_conversion_contact === 'function') {
+        gtag_report_conversion_contact(telUrl);
       }
 
       setTimeout(function() {
@@ -59,8 +79,12 @@
     }
 
     function trackWhatsAppClick(url) {
-      if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion(url);
+      // Track both conversion events
+      if (typeof gtag_report_conversion_call === 'function') {
+        gtag_report_conversion_call(url);
+      }
+      if (typeof gtag_report_conversion_contact === 'function') {
+        gtag_report_conversion_contact(url);
       }
       setTimeout(function() {
         window.open(url, '_blank');
@@ -1085,8 +1109,12 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            if (typeof gtag_report_conversion === 'function') {
-                gtag_report_conversion();
+            // Track both conversion events on form submit
+            if (typeof gtag_report_conversion_call === 'function') {
+                gtag_report_conversion_call();
+            }
+            if (typeof gtag_report_conversion_contact === 'function') {
+                gtag_report_conversion_contact();
             }
             alert('شكراً لتواصلكم مع شركة أكواتك لتسليك المجاري! سيتم الاتصال بكم فوراً لتقديم الخدمة.');
             this.reset();
